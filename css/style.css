@@ -1,0 +1,285 @@
+:root{
+    --paper: white;
+    --paper-raised: #FFF3E0;
+    --ink: #262219;
+    --ink-soft: #5C5648;
+    --ink-faint: #948E7C;
+    --accent: #E8593D;
+    --accent-ink: #C23F26;
+    --teal: #55C4BE;
+    --teal-deep: #1F7A73;
+    --mustard: #EFAD3E;
+    --mustard-deep: #C6821F;
+    --line: #D9EFEC;
+    --white: #FFFFFF;
+    --max-width: 1080px;
+    --radius: 18px;
+    --radius-pill: 999px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3{
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0;
+    color: var(--ink);
+  }
+
+  h1{
+    font-size: 48px;
+  }
+
+  p{ margin: 0 0 1em; max-width: 62ch; }
+
+  a{ color: var(--accent-ink); }
+
+  img{ max-width: 100%; display: block; }
+
+  .container{
+    margin: 0 auto;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible{
+    outline: 2px solid var(--accent-ink);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    html{ scroll-behavior: auto; }
+  }
+
+  /* ---------- Navigation ---------- */
+  .site-nav{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 2px solid var(--teal);
+    width: 100%;
+  }
+  .nav-inner{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 28px;
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+  .nav-name{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Caveat', cursive;
+    font-size: 1.7rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .nav-name svg{ width: 20px; height: 20px; flex-shrink: 0; }
+  .nav-links{
+    display: flex;
+    gap: 28px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-links a{
+    text-decoration: none;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: color 0.15s ease;
+  }
+  .nav-links a:hover{ color: var(--teal-deep); }
+
+  .nav-toggle{
+    display: none;
+    background: none;
+    border: 2px solid var(--teal);
+    border-radius: var(--radius-pill);
+    padding: 8px 14px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--ink);
+    cursor: pointer;
+  }
+
+  @media (max-width: 720px){
+    .nav-toggle{ display: block; }
+    .nav-links{
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--paper);
+      border-bottom: 2px solid var(--teal);
+      flex-direction: column;
+      gap: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.25s ease;
+    }
+    .nav-links.open{ max-height: 300px; }
+    .nav-links a{
+      display: block;
+      padding: 14px 28px;
+      border-top: 1px solid var(--line);
+    }
+  }
+/* Définition d'un container pour gérer l'affichage */
+.container {
+    overflow: hidden;
+    width: 100%;
+    /* Cache les éléments qui dépassent du container */
+}
+
+.btn{
+    display: inline-block;
+    padding: 14px 28px;
+    border-radius: var(--radius-pill);
+    text-decoration: none;
+    font-size: 0.98rem;
+    font-weight: 700;
+    font-family: 'Quicksand', sans-serif;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+    border: 2px solid transparent;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+
+  .btn-primary{
+    background: var(--teal);
+    color: var(--white);
+  }
+  .btn-primary:hover{ background: var(--teal-deep); transform: translateY(-1px); }
+  
+  /* ---------- Contact ---------- */
+  .contact-grid{
+    display: flex;
+    flex-direction: column;
+    gap:56px;
+    align-items: center;
+    padding-top:75px;
+  }
+  @media (max-width: 800px){
+    .contact-grid{ grid-template-columns: 1fr; }
+  }
+  .field{ margin-bottom: 20px; }
+  .field label{
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+  }
+  .field input,
+  .field select,
+  .field textarea{
+    width: 100%;
+    font-family: inherit;
+    font-size: 1rem;
+    padding: 12px 16px;
+    border: 2px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--white);
+    color: var(--ink);
+  }
+  .field input:focus-visible,
+  .field select:focus-visible,
+  .field textarea:focus-visible{
+    outline: none;
+    border-color: var(--teal);
+  }
+  .field textarea{ resize: vertical; min-height: 120px; }
+
+  .form-status{
+    margin-top: 16px;
+    font-size: 0.92rem;
+    font-weight: 600;
+  }
+  .form-status[data-state="success"]{ color: var(--teal-deep); }
+  .form-status[data-state="error"]{ color: var(--accent-ink); }
+
+  .contact-alt h3{ font-size: 1.6rem; margin-bottom: 10px; color: var(--teal);}
+  .contact-alt p{ color: var(--ink-soft); font-size: 0.95rem; font-weight: 500; }
+  .contact-alt a{ text-decoration: none; }
+  .contact-alt a:hover{ text-decoration: underline; }
+
+  /* ---------- About ---------- */
+  /* À propos : photo 250px + texte, l'ensemble centré */
+#apropos .about-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;   /* groupe centré, pas collé à gauche */
+  gap: 56px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 56px 24px;
+}
+
+#apropos .about-photo {
+  flex: 0 0 250px;
+  width: 250px;
+  aspect-ratio: 1 / 1;
+  
+}
+#apropos .about-photo .photo-slot,
+#apropos .about-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--teal);
+}
+
+#apropos .about-photo img {
+  padding: 1px;
+}
+
+#apropos .about-text {
+  flex: 1 1 0;
+  max-width: 520px;
+}
+#apropos .about-text p { max-width: none; }
+
+/* Mobile : photo au-dessus, texte en dessous, tout centré */
+@media (max-width: 720px) {
+  #apropos .about-grid {
+    flex-direction: column;
+    gap: 24px;
+    padding: 40px 20px;
+    text-align: center;
+  }
+  #apropos .about-photo { flex-basis: auto; width: 200px; }
+  #apropos .about-text  { max-width: none; }
+}
+
+  /* ---------- Footer ---------- */
+  footer{
+    border-top: 2px solid var(--teal);
+    padding: 32px 0;
+    color: var(--ink-faint);
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-align: center;
+  }

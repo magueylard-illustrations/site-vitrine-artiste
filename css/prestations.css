@@ -1,0 +1,124 @@
+
+
+
+.prestations-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position:sticky;
+  top:70px;
+
+  padding: 20px;
+  background-color: white;
+  width: 40%;
+  margin-bottom: 20px;
+  z-index: 10;
+
+}
+
+.prestations-container h1{
+  font-size: 32px;
+  color: var(--teal);
+
+}
+
+.prestations-container p{
+  font-size: 14px;
+}
+
+.prestation-btn{
+  font-size: 14px;
+  background-color: var(--mustard);
+}
+
+.prestation{
+    display: flex;
+    flex-direction: column;
+    
+  }
+
+  .prestation-btn-container{
+    display: flex;
+    flex-direction: column;
+    
+  }
+
+  
+
+  .prestation-media{
+    display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: masonry;
+}
+
+.prestation-media img,
+.prestation-media video {
+  break-inside: avoid; /* empêche de couper un élément entre deux colonnes */
+  margin-bottom: 1rem;
+  width: 100%;
+  height: auto; /* la hauteur suit le ratio */
+  display: block;
+}
+
+.prestation-container{
+  display: grid;
+  grid-template-columns: 0.4fr 0.6fr; /* largeur de l'encart | reste */
+  gap: 2rem;
+  align-items: start;
+  margin-top: 50px;
+}
+
+  .prestation-body{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top:250px;
+    padding: 20px;
+  }
+
+
+
+  
+  .prestation-body h3{
+    font-size: 2.1rem;
+    margin-bottom: 10px;
+  }
+  
+  .prestation-body p{ color: var(--ink-soft); font-weight: 500; }
+  .prestation-tags{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 16px 0;
+    padding: 0;
+    list-style: none;
+  }
+  .prestation-tags li{
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--mustard-deep);
+    background: #FFF3D6;
+    border-radius: var(--radius-pill);
+    padding: 6px 13px;
+  }
+  .prestation-tarif{
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: 1.7rem;
+    color: var(--accent-ink);
+    margin-top: 14px;
+  }
+  .prestation-cta{
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--teal-deep);
+    border-bottom: 2px solid var(--teal);
+    padding-bottom: 2px;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .prestation-cta:hover{ color: var(--accent-ink); border-color: var(--accent-ink); }

@@ -1,0 +1,103 @@
+/* ==========================================================
+   responsive.css — à charger EN DERNIER (après carroussel.css)
+   Ne change rien au desktop (> 900px).
+   ========================================================== */
+
+/* ---------- Tablette et mobile : une seule colonne ---------- */
+@media (max-width: 900px) {
+
+  /* Bloc d'intro "Mes prestations" : plus de sticky ni de 40% */
+  .prestations-container {
+    position: static;
+    width: 100%;
+    margin: 0 auto 10px;
+    padding: 24px 20px 0;
+  }
+  .prestations-container h1 { font-size: 2.2rem; }
+
+  /* Chaque prestation : texte d'abord, puis photos, dans le flux */
+  .prestation-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 32px;
+    padding: 0 20px;
+  }
+
+  .prestation-body {
+    position: static;      /* plus collé à gauche */
+    padding: 0;
+    align-items: flex-start;
+    text-align: left;
+  }
+  .prestation-body h3 { font-size: 1.9rem; }
+  .prestation-body p  { max-width: none; }
+
+  /* Photos : grille simple (la valeur d'origine était invalide) */
+  .prestation-media {
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: none;
+    gap: 10px;
+  }
+  .prestation-media img,
+  .prestation-media video {
+    margin-bottom: 0;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 720px) {
+
+  body { font-size: 16px; }
+  h1   { font-size: 2.2rem; }
+
+  /* Navigation */
+  .nav-inner { padding: 10px 16px; }
+  .nav-name  { font-size: 1.25rem; gap: 6px; }
+  .nav-name svg { width: 16px; height: 16px; }
+
+  /* Carrousel plein écran moins la barre de nav */
+  .carousel { height: calc(100svh - 60px); }
+  .carousel-inner,
+  .slide { height: 100%; }
+
+  .slide-elements {
+    padding: 12px 16px 36px; /* place pour les points */
+    text-align: center;
+  }
+  .slide-elements h1 { font-size: 1.9rem; margin-top: 0; }
+  .slide-elements p  { font-size: 0.95rem; margin-bottom: 0.6em; }
+  .slide-elements .btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  /* Points de navigation plus petits et vraiment centrés */
+  .carousel-dots {
+    left: 0;
+    right: 0;
+    bottom: 8px;
+  }
+  .carousel-dots .active,
+  .carousel-dots .inactive { border-width: 6px !important; }
+
+  /* Photos des prestations : une colonne, pleine largeur */
+  .prestation-media { grid-template-columns: 1fr; }
+
+  /* Tags un peu plus compacts */
+  .prestation-tags li { font-size: 0.78rem; padding: 5px 11px; }
+
+  /* Bouton "Demander un devis" bien visible */
+  .prestation-cta { font-size: 1rem; }
+
+  /* Pied de page */
+  footer .container { padding: 20px 16px; text-align: center; font-size: 0.85rem; }
+
+  /* Le menu déroulant déborde moins */
+  .nav-links a { padding: 14px 16px; }
+
+  .contact-grid{
+    padding: 20px;
+  }
+}

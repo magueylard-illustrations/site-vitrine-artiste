@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portrait & illustration sur commande</title>
+<meta name="description" content="Illustratrice indépendante — cartes dessinées au feutre, portraits sur commande et animation dessin en direct.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet"/>
+<link href="css/prestations.css" rel="stylesheet"/>
+<link href="css/carroussel.css" rel="stylesheet"/>
+<link href="css/responsive.css" rel="stylesheet"/>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="#accueil" class="nav-name">
+      <svg viewBox="0 0 24 24" fill="#EFAD3E" stroke="#262219" stroke-width="1.2" aria-hidden="true">
+      <path d="M12 2l2.6 6.9L22 10l-5.5 4.8L18 22l-6-3.9L6 22l1.5-7.2L2 10l7.4-1.1L12 2z"/></svg>
+      <span id="nav-name">M-A Gueylard Illustrations</span>
+      <svg viewBox="0 0 24 24" fill="#EFAD3E" stroke="#262219" stroke-width="1.2" aria-hidden="true">
+      <path d="M12 2l2.6 6.9L22 10l-5.5 4.8L18 22l-6-3.9L6 22l1.5-7.2L2 10l7.4-1.1L12 2z"/></svg>
+      
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">Menu</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#accueil">Accueil</a></li>
+      <li><a href="#prestations">Prestations</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#apropos">À propos</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+<!-- big image carroussel -->
+<section id="accueil">
+    <!-- Conteneur principal pour le carrousel -->
+    <div class="container">
+        <!-- Élément carrousel -->
+        <div class="carousel">
+            <!-- Conteneur interne pour les diapositives -->
+            <div class="carousel-inner" id="sections-list"></div>
+            <!-- Conteneur pour les boutons de navigation -->
+            <div class="carousel-controls">
+                <!-- Bouton pour passer à la diapositive précédente -->
+                <button id="prev">
+                    <img src="img/fleche_gauche.png">
+                </button>
+                <!-- Bouton pour passer à la diapositive suivante -->
+                <button id="next">
+                    <img src="img/fleche_droite.png">
+                </button>
+            </div>
+            <!-- Conteneur pour les points de navigation -->
+            <div class="carousel-dots"></div>
+        </div>
+    </div>
+    
+</section>
+
+<section id="prestations" >
+    <aside class="prestations-container">
+        <h1>Mes prestations</h1>
+        <p>Chaque pièce est réalisée à la commande, à la main ou à la tablette graphique, selon vos envies et votre occasion.</p>
+        <a class="prestation-cta" href="#contact">Demander un devis</a>
+      </aside>
+    <div id="prestations-list"></div>
+</section>
+
+<hr class="divider">
+
+  <!-- ===================== CONTACT ===================== -->
+  <section id="contact">
+    <div class="container contact-grid">
+      <div>
+        <div class="section-head">
+          <h1>Contact</h1>
+          <p>Décrivez-moi votre projet — occasion, délai souhaité, inspirations — et je reviens vers vous avec un devis.</p>
+        </div>
+
+        <form id="contactForm">
+          <div class="field">
+            <label for="f-name">Nom</label>
+            <input type="text" id="f-name" name="name" required>
+          </div>
+          <div class="field">
+            <label for="f-email">Email</label>
+            <input type="email" id="f-email" name="email" required>
+          </div>
+          <div class="field">
+            <label for="f-prestation">Prestation souhaitée</label>
+            <select id="f-prestation" name="prestation"></select>
+          </div>
+          <div class="field">
+            <label for="f-message">Votre message</label>
+            <textarea id="f-message" name="message" required></textarea>
+          </div>
+          <!-- Champ piège anti-spam : invisible pour les visiteurs humains, rempli par les robots.
+               Formspree ignore silencieusement tout envoi où ce champ est rempli. -->
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+
+          <button type="submit" class="btn btn-primary">Envoyer ma demande</button>
+          <p class="form-status" id="formStatus" role="status"></p>
+        </form>
+      </div>
+
+      <div class="contact-alt">
+        <h3>Autres moyens de me contacter</h3>
+        <div id="contact-alt-list"></div>
+      </div>
+    </div>
+  </section>
+  <hr class="divider">
+
+  <!-- ===================== À PROPOS ===================== -->
+  <section id="apropos">
+    <div class="container about-grid">
+      <div class="about-photo">
+        <div class="photo-slot" id="about-photo" >
+          <span>Emplacement photo</span>
+        </div>
+      </div>
+      <div class="about-text">
+        <div class="section-head">
+          <h1>À propos</h1>
+        </div>
+        <div id="about-text"></div>
+      </div>
+    </div>
+  </section>
+  
+</main>
+
+
+<footer>
+  <div class="container">
+    <span id="footer-text"></span>
+  </div>
+</footer>
+
+<script>
+const CONFIG = {
+
+  // Nom affiché dans la barre de navigation et le pied de page
+  siteName: "M-A Gueylard Illustrations",
+  footerNote: "Illustratrice indépendante",
+  // ---------------- À propos ----------------
+  about: {
+    photo: "img/logo mini me.png",
+    // Un paragraphe par élément de tableau
+    paragraphes: [
+      "Bonjour, je suis Marie-Audrey, artiste-auteure indépendante. Je dessine depuis toujours, et depuis quelques années, je réalise des illustrations et portraits sur commande, au feutre ou digital.",
+      "J'aime particulièrement dessiner les portraits, les familles, les émotions, les sourires.",
+      "Enregistrée en tant qu'artiste-auteure, je travaille avec mes feutres et ma tablette graphique."
+    ]
+  },
+
+  sections:[
+    {
+        image:"img/feutre/carte-mariage-felicitations.jpg",
+        titre:"Portraits dessinés aux feutres",
+        description:"Un portrait de famille, une carte pour un évènement, un souvenir pour chaque occasion",
+        boutonLien:"#prestafeutre",
+        boutonTexte:"Voir Cartes - portraits dessinés"
+    },
+    {
+        image:"img/digital/Illustration-livre.jpg",
+        titre:"Portraits digitals",
+        description:"Dessinés à la tablette graphique",
+        boutonLien:"#prestadigital",
+        boutonTexte:"Voir les projets"
+    },
+    {
+        image:"img/animation/animation2.jpeg",
+        titre:"Live drawing",
+        description:"Je dessine les portraits de vos invités en direct.",
+        boutonLien:"#dessinanimation",
+        boutonTexte:"En savoir plus"
+    }
+  ],
+   prestations: [
+    {
+      id:"prestafeutre",
+      titre: "Portraits dessinés aux feutres",
+      description: "Une illustration entièrement dessinée à la main et coloriée aux feutres Copic (le must de la qualité), pour marquer un événement particulier, pour offrir ou juste pour soi. Le format, les couleurs et le style s'adaptent à votre occasion.",
+      tags: ["Portrait de famille", "Anniversaire", "Mariage", "Naissance", "Remerciement", "Sur mesure"],
+      photos: ["img/feutre/carte-mariage-felicitations.jpg", "img/feutre/portrait-coloc.jpg", "img/feutre/portrait-steampunk.jpg", "img/feutre/carte-famille-portrait.jpg"] 
+    },
+    {
+      id:"prestadigital",
+      titre: "Portraits digitals",
+      description: "Un portrait fidèle et expressif, réalisé à partir de vos photos, un avatar pour votre business, la couverture d'un livre, une illustration pour un évènement, je réalise votre projet, dessiné à la tablette graphique, livré en haute définition, prêt à imprimer ou à offrir.",
+      tags: ["Votre projet", "A imprimer", "Digital haute définition"],
+      photos: ["img/digital/portrait-famille.jpg", "img/digital/illustration-livre.jpg", "img/digital/avatar-logo.png", "img/digital/les_noyers_de_chloe.png", "img/digital/portrait_25ans.jpg", "img/digital/evjf_laurie.jpeg", "img/digital/carte-depart.jpg"]
+    },
+    {
+      id:"dessinanimation",
+      titre: "Live drawing",
+      description: "Animation de dessin en direct. Pour vos mariages, salons professionnels ou événements d'entreprise, je réalise des portraits en direct devant vos invités : une animation originale et un souvenir unique pour vous ou pour chacun.",
+      tags: ["Mariages", "Salons", "Événements d'entreprise"],
+      photos: ["img/animation/animation1.jpeg", "img/animation/dessin_animation.mp4", "img/animation/animation2.jpeg", "img/animation/animation3.jpeg"]
+    }
+  ],
+   // ---------------- Contact ----------------
+  contact: {
+    // Remplacez par l'identifiant de votre formulaire Formspree (https://formspree.io)
+    formspreeEndpoint: "https://formspree.io/f/VOTRE_ID_FORMSPREE",
+    email: "contact@magueylard.com",
+    instagram: "https://www.instagram.com/magueylard.illus/", // ex: "https://instagram.com/votrecompte"
+    instagramId: "magueylard.illus"
+  }
+}
+
+// Nav + footer
+document.getElementById('nav-name').textContent = CONFIG.siteName;
+document.getElementById('footer-text').textContent =
+  `© ${new Date().getFullYear()} ${CONFIG.siteName} — ${CONFIG.footerNote}`;
+
+//---------------------------sections-----------------------//
+const sectionsList = document.getElementById('sections-list');
+CONFIG.sections.forEach((p, i) => {
+  const block = document.createElement('div');
+  block.className = 'slide';
+  block.innerHTML = `
+    <div class="slide-img-container">
+        <img src="${p.image}">
+    </div>
+    <div class="slide-elements">
+        <h1>${p.titre}</h1>
+        <p>${p.description}</p>
+        <a class="btn btn-primary" href="${p.boutonLien}">${p.boutonTexte}</a>
+    </div>
+  `;
+  sectionsList.appendChild(block);
+
+});
+
+//------------------------Prestations-----------------------//
+const prestationsList = document.getElementById('prestations-list');
+const btnPrestationList = document.getElementById('prestation-btn-list');
+CONFIG.prestations.forEach((p, i) => {
+
+  const photosHtml = p.photos.map((src, idx) =>{
+  if (src.toLowerCase().endsWith(".mp4")) {
+    return `<video src="${src}" class="photo-slot" autoplay loop muted playsinline></video>`;
+  } else {
+    return `<img src="${src}" class="photo-slot" alt="${p.titre} — exemple ${idx + 1}">`;
+  }
+}).join('');
+
+  const tagsHtml = p.tags.map(t => `<li>${t}</li>`).join('');
+
+  const block = document.createElement('div');
+  block.className = 'prestation';
+  block.innerHTML = `
+    <div class="prestation-container" id=${p.id}>
+      <div class="prestation-body">
+        <h3>${p.titre}</h3>
+        <p>${p.description}</p>
+        <ul class="prestation-tags">${tagsHtml}</ul>
+      </div>
+      <div class="prestation-media">
+        ${photosHtml}
+      </div>
+    </div>
+  `;
+  prestationsList.appendChild(block);
+});
+
+//---------------------------navigation---------------------//
+    // Utilisation de la directive "use strict" pour activer le mode strict en JavaScript
+    // Cela implique une meilleure gestion des erreurs et une syntaxe plus stricte pour le code
+    "use strict"
+
+    // Déclare la constante pour la durée de chaque slide
+    const slideTimeout = 5000;
+
+    // Récupère les boutons de navigation
+    const prev = document.querySelector('#prev');
+    const next = document.querySelector('#next');
+
+    // Récupère tous les éléments de type "slide"
+    const $slides = document.querySelectorAll('.slide');
+
+    // Initialisation de la variable pour les "dots"
+    let $dots;
+
+    // Initialisation de la variable pour l'intervalle d'affichage des slides
+    let intervalId;
+
+    // Initialisation du slide courant à 1
+    let currentSlide = 0;   // 0 = première slide (et non 1)
+
+    function slideTo(index) {
+        // boucle : après la dernière on revient à la première, et inversement
+        currentSlide = (index + $slides.length) % $slides.length;
+        $slides.forEach($elt => $elt.style.transform = `translateX(-${currentSlide * 100}%)`);
+        $dots.forEach(($elt, key) => $elt.classList = `dot ${key === currentSlide ? 'active' : 'inactive'}`);
+    }
+
+    function showSlide() {
+        slideTo(currentSlide + 1);   // plus de currentSlide++ séparé
+    }
+
+    // dots : index de 0 à n-1
+    for (let i = 0; i < $slides.length; i++) {
+        const dotClass = i === currentSlide ? 'active' : 'inactive';
+        document.querySelector('.carousel-dots').innerHTML += `<span data-slidId="${i}" class="dot ${dotClass}"></span>`;
+    }
+    $dots = document.querySelectorAll('.dot');
+    $dots.forEach(($elt, key) => $elt.addEventListener('click', () => slideTo(key)));
+
+    prev.addEventListener('click', () => slideTo(currentSlide - 1));
+    next.addEventListener('click', () => slideTo(currentSlide + 1));
+
+    intervalId = setInterval(showSlide, slideTimeout);
+    // Boucle sur tous les éléments de type "slide" pour ajouter des écouteurs d'événement pour les interactions avec la souris et le toucher
+    $slides.forEach($elt => {
+        let startX;
+        let endX;
+        // Efface l'intervalle d'affichage des slides lorsque la souris passe sur un slide
+        $elt.addEventListener('mouseover', () => {
+            clearInterval(intervalId);
+        }, false)
+        // Réinitialise l'intervalle d'affichage des slides lorsque la souris sort d'un slide
+        $elt.addEventListener('mouseout', () => {
+            intervalId = setInterval(showSlide, slideTimeout);
+        }, false);
+        // Enregistre la position initiale du toucher lorsque l'utilisateur touche un slide
+        $elt.addEventListener('touchstart', (event) => {
+            startX = event.touches[0].clientX;
+        });
+        // Enregistre la position finale du toucher lorsque l'utilisateur relâche son doigt
+        $elt.addEventListener('touchend', (event) => {
+            endX = event.changedTouches[0].clientX;
+            // Si la position initiale est plus grande que la position finale, affiche le prochain slide
+            if (startX > endX) {
+                slideTo(currentSlide + 1);
+                // Si la position initiale est plus petite que la position finale, affiche le slide précédent
+            } else if (startX < endX) {
+                slideTo(currentSlide - 1);
+            }
+        });
+    })
+
+  //-------------------------Contact--------------------------
+  // Contact — select des prestations
+  const selectEl = document.getElementById('f-prestation');
+  CONFIG.prestations.forEach(p => {
+    const opt = document.createElement('option');
+    opt.value = p.titre;
+    opt.textContent = p.titre;
+    selectEl.appendChild(opt);
+  });
+  const autreOpt = document.createElement('option');
+  autreOpt.value = 'Autre';
+  autreOpt.textContent = 'Autre / je ne sais pas encore';
+  selectEl.appendChild(autreOpt);
+
+  // Contact — moyens alternatifs
+  const altList = document.getElementById('contact-alt-list');
+  let altHtml = `<p>Email : <a href="mailto:${CONFIG.contact.email}">${CONFIG.contact.email}</a></p>`;
+  if (CONFIG.contact.instagram) {
+    altHtml += `<p>Instagram : <a href="${CONFIG.contact.instagram}" target="_blank" rel="noopener">@${CONFIG.contact.instagramId}</a></p>`;
+  }
+  altList.innerHTML = altHtml;
+
+  // Formulaire de contact — envoi via Formspree
+  const form = document.getElementById('contactForm');
+  const statusEl = document.getElementById('formStatus');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if (CONFIG.contact.formspreeEndpoint.includes('VOTRE_ID_FORMSPREE')) {
+      statusEl.dataset.state = 'error';
+      statusEl.textContent = "Le formulaire n'est pas encore relié à Formspree — remplacez VOTRE_ID_FORMSPREE dans la CONFIG du fichier.";
+      return;
+    }
+
+    const submitBtn = form.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    statusEl.dataset.state = '';
+    statusEl.textContent = 'Envoi en cours...';
+
+    try {
+      const formData = new FormData(form);
+      const response = await fetch(CONFIG.contact.formspreeEndpoint, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        statusEl.dataset.state = 'success';
+        statusEl.textContent = 'Merci, votre message a bien été envoyé ! Je reviens vers vous rapidement.';
+        form.reset();
+      } else {
+        throw new Error('Réponse non valide');
+      }
+    } catch (err) {
+      statusEl.dataset.state = 'error';
+      statusEl.textContent = "Une erreur est survenue lors de l'envoi. Vous pouvez aussi m'écrire directement par email.";
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
+
+  //----------------------A propos----------------------------
+  // About
+  const aboutPhotoEl = document.getElementById('about-photo');
+  if (CONFIG.about.photo) {
+    aboutPhotoEl.innerHTML = `<img src="${CONFIG.about.photo}" alt="Portrait de ${CONFIG.siteName}" style="width:100%;height:100%;object-fit:cover;">`;
+  } else {
+    aboutPhotoEl.innerHTML = '<span>Emplacement photo — portrait mini me</span>';
+  }
+  document.getElementById('about-text').innerHTML =
+    CONFIG.about.paragraphes.map(p => `<p>${p}</p>`).join('');
+
+
+   const navToggle = document.getElementById('navToggle');
+   const navLinks = document.getElementById('navLinks');
+   navToggle.addEventListener('click', () => {
+     const isOpen = navLinks.classList.toggle('open');
+     navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+   });
+   navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+     navLinks.classList.remove('open');
+     navToggle.setAttribute('aria-expanded', 'false');
+   }));
+</script>
+</body>
