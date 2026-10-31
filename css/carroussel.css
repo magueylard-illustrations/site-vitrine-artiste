@@ -1,7 +1,11 @@
 
 /* Définition du carousel */
+section[id],
+[id="accueil"] {
+  scroll-margin-top: 75px; /* = hauteur de ton header */
+}
+
 .carousel {
-    
     height: 100vh;
 }
 
