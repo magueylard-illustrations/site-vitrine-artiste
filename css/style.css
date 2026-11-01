@@ -146,6 +146,26 @@
       border-top: 1px solid var(--line);
     }
   }
+
+.nav-actions{
+  display: flex;
+  align-items: right;
+  gap: 28px;
+}
+.nav-instagram{
+  display: flex;
+  align-items: center;
+  color: var(--ink-soft);
+  transition: color 0.15s ease;
+}
+.nav-instagram:hover{ color: var(--teal-deep); }
+.nav-instagram[hidden]{ display: none; }
+.nav-instagram svg{ width: 22px; height: 22px; display: block; }
+
+@media (max-width: 720px){
+  .nav-actions{ margin-left: 0; }
+}
+
 /* Définition d'un container pour gérer l'affichage */
 .container {
     overflow: hidden;

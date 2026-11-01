@@ -96,7 +96,7 @@
 
   /* Le menu déroulant déborde moins */
   .nav-links a { padding: 14px 16px; }
-
+  .nav-actions{ gap: 14px;}
   .contact-grid{
     padding: 20px;
   }
