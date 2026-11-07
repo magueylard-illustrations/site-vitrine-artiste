@@ -42,7 +42,7 @@
     font-size: 48px;
   }
 
-  p{ margin: 0 0 1em; max-width: 62ch; }
+  p{ margin: 0 0 1em; }
 
   a{ color: var(--accent-ink); }
 
